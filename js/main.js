@@ -13,10 +13,26 @@ new Vue({
             this.gameIsRuning = true;
         },
         attack() {
-            let max = 10;
-            let min = 3;
-            let damage = Math.max(Math.floor(Math.random() * max + 1), min);
-            this.enemyHealth -= damage;
+            if (this.playerAttack(3, 10)) {
+                return;
+            } else if (this.enemyAttack(4, 12)) {
+                return;
+            }
+        },
+        specialAttack() {
+            if (this.playerAttack(6, 16)) {
+                return;
+            } else if (this.enemyAttack(4, 12)) {
+                return;
+            }
+        },
+        help() {},
+        finishPlay() {},
+        calculateDamage(min, max) {
+            return Math.max(Math.floor(Math.random() * max + 1), min);
+        },
+        playerAttack(min, max) {
+            this.enemyHealth -= this.calculateDamage(min, max);
             if (this.enemyHealth <= 0) {
                 this.enemyHealth = 100;
                 this.playerHealth = 100;
@@ -29,12 +45,11 @@ new Vue({
                     timer: 1500,
                 });
                 this.gameIsRuning = false;
-                return;
+                return true;
             }
-            max = 12;
-            min = 4;
-            damage = Math.max(Math.floor(Math.random() * max + 1), min);
-            this.playerHealth -= damage;
+        },
+        enemyAttack(min, max) {
+            this.playerHealth -= this.calculateDamage(min, max);
             if (this.playerHealth <= 0) {
                 this.playerHealth = 100;
                 this.enemyHealth = 100;
@@ -47,11 +62,8 @@ new Vue({
                     timer: 1500,
                 });
                 this.gameIsRuning = false;
-                return;
+                return true;
             }
         },
-        specialAttack() {},
-        help() {},
-        finishPlay() {},
     },
 });
