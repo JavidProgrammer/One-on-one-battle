@@ -26,8 +26,24 @@ new Vue({
                 return;
             }
         },
-        help() {},
-        finishPlay() {},
+        help() {
+            if (this.playerHealth <= 90) {
+                this.playerHealth += 10;
+            } else {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "question",
+                    title: "Your health must be less than 90.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        finishPlay() {
+            this.gameIsRuning = false;
+            this.playerHealth = 100;
+            this.enemyHealth = 100;
+        },
         calculateDamage(min, max) {
             return Math.max(Math.floor(Math.random() * max + 1), min);
         },
