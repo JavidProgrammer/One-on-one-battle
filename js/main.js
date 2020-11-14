@@ -6,6 +6,8 @@ new Vue({
             enemyHealth: 100,
             gameIsRuning: false,
             scores: { player: 0, enemy: 0 },
+            specialCount: 0,
+            helpCount: 0,
         };
     },
     methods: {
@@ -20,6 +22,7 @@ new Vue({
             }
         },
         specialAttack() {
+            this.specialCount += 1;
             if (this.playerAttack(6, 16)) {
                 return;
             } else if (this.enemyAttack(4, 12)) {
@@ -29,6 +32,7 @@ new Vue({
         help() {
             if (this.playerHealth <= 90) {
                 this.playerHealth += 10;
+                this.helpCount += 1;
             } else {
                 Swal.fire({
                     position: "top-end",
@@ -52,6 +56,8 @@ new Vue({
             if (this.enemyHealth <= 0) {
                 this.enemyHealth = 100;
                 this.playerHealth = 100;
+                this.helpCount = 0;
+                this.specialCount = 0;
                 this.scores.player += 1;
                 Swal.fire({
                     position: "top-end",
@@ -69,6 +75,8 @@ new Vue({
             if (this.playerHealth <= 0) {
                 this.playerHealth = 100;
                 this.enemyHealth = 100;
+                this.helpCount = 0;
+                this.specialCount = 0;
                 this.scores.enemy += 1;
                 Swal.fire({
                     position: "top-end",

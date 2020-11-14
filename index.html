@@ -23,7 +23,7 @@
 <body>
     <div class="container" id="play">
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-8">
                 <div class="row">
                     <div class="col-6">
                         <h2 class="text-center">You</h2>
@@ -40,14 +40,14 @@
                 </div>
                 <div class="card mt-4" v-if="!gameIsRuning">
                     <div class="card-body text-center">
-                        <button type="button" class="btn btn-primary col-2" @click="startGame">Start Play</button>
+                        <button type="button" class="btn btn-primary col-12" @click="startGame">Start Play</button>
                     </div>
                 </div>
                 <div class="card mt-4" v-else>
                     <div class="card-body text-center">
                         <button type="button" class="btn btn-danger" @click="attack">Attack</button>
-                        <button type="button" class="btn btn-warning" @click="specialAttack">Attack Special</button>
-                        <button type="button" class="btn btn-success" @click="help">Help</button>
+                        <button type="button" class="btn btn-warning" @click="specialAttack" :disabled="specialCount >= 2">Attack Special</button>
+                        <button type="button" class="btn btn-success" @click="help" :disabled="helpCount >= 1">Help</button>
                         <button type="button" class="btn btn-dark" @click="finishPlay">Finish Play</button>
                     </div>
                 </div>
