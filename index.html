@@ -28,13 +28,13 @@
                     <div class="col-6">
                         <h2 class="text-center">You</h2>
                         <div class="progress" style="height: 30px;">
-                            <div class="progress-bar bg-success" role="progressbar" :style="{width: playerHealth + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ playerHealth }}%</div>
+                            <div :class="['progress-bar', playerHealth <= 30 ? 'bg-danger' : 'bg-success']" role="progressbar" :style="{width: playerHealth + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ playerHealth }}%</div>
                         </div>
                     </div>
                     <div class="col-6">
                         <h2 class="text-center">Enemy</h2>
                         <div class="progress" style="height: 30px;">
-                            <div class="progress-bar bg-success" role="progressbar" :style="{width: enemyHealth + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ enemyHealth }}%</div>
+                            <div :class="['progress-bar', enemyHealth <= 30 ? 'bg-danger' : 'bg-success']" role="progressbar" :style="{width: enemyHealth + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ enemyHealth }}%</div>
                         </div>
                     </div>
                 </div>

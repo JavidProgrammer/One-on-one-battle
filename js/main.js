@@ -47,6 +47,8 @@ new Vue({
             this.gameIsRuning = false;
             this.playerHealth = 100;
             this.enemyHealth = 100;
+			this.specialCount = 0;
+			this.helpCount = 0;
         },
         calculateDamage(min, max) {
             return Math.max(Math.floor(Math.random() * max + 1), min);
